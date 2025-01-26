@@ -1,0 +1,40 @@
+document.getElementById('sendBtn').addEventListener('click', () => {
+    const userInput = document.getElementById('userInput').value.trim();
+    const chatWindow = document.getElementById('chatWindow');
+  
+    if (userInput === '') return;
+  
+    // Add user message to chat
+    const userMessage = document.createElement('div');
+    userMessage.className = 'message user-message';
+    userMessage.textContent = userInput;
+    chatWindow.appendChild(userMessage);
+  
+    // Simulate bot response
+    const botMessage = document.createElement('div');
+    botMessage.className = 'message bot-message';
+    botMessage.textContent = getBotResponse(userInput);
+    chatWindow.appendChild(botMessage);
+  
+    // Clear input and scroll to bottom
+    document.getElementById('userInput').value = '';
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  });
+  
+  function getBotResponse(input) {
+    // Example responses
+    const responses = {
+      hello: 'Hi! How can I assist you with your education today?',
+      math: 'What math problem do you need help with?',
+      science: 'I love science! Ask me your question.',
+      default: "Sorry, I don't understand. Can you rephrase that?"
+    };
+  
+    // Match response or return default
+    const lowerInput = input.toLowerCase();
+    if (lowerInput.includes('hello')) return responses.hello;
+    if (lowerInput.includes('math')) return responses.math;
+    if (lowerInput.includes('science')) return responses.science;
+    return responses.default;
+  }
+  \
